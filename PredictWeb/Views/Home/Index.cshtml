@@ -3,16 +3,18 @@
 }
 
 <div class="text-center" id="home">
-    <h1 class="display-4">Predict Iris</h1>
+    <h1 class="display-4">Predict Web</h1>
     <p id="descricao">
-     Predict Iris tem o objetivo de prever qual tipo de espécie da flor Iris as medidas informadas se referem.    
+        Plataforma Web que tem como objetivo executar a predição das chances de internamento e óbitos em pacientes com Covid-19
+     @* Predict Iris tem o objetivo de prever qual tipo de espécie da flor Iris as medidas informadas se referem.     *@
     </p>
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title text-center">Faça aqui suas predições</h5>
-                    <a class="btn btn-primary" asp-controller="Iris" asp-action="Index">Executar predição</a>
+                    @* <p class="card-text"></p> *@
+                    <a class="btn btn-primary" asp-controller="Covid" asp-action="Index">Executar predição</a>
                 </div>
             </div>
         </div>

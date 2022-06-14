@@ -1,0 +1,120 @@
+﻿@model PredictWeb.Models.CovidViewModel
+@{
+    ViewData["Title"] = "Predição - Covid";
+}
+
+<h1>Fornecer Informações</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Result">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Genero" class="control-label">Sexo :</label>
+                <select asp-for="Genero" class="form-select" />
+                <option value="1">Masculino</option>
+                <option value="2">Feminino</option>
+                <span asp-validation-for="Genero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Idade" class="control-label">Idade :</label>
+                <input asp-for="Idade" type="number" step="1" min="0" max="150" placeholder="Idade" class="form-control"/>
+                <span asp-validation-for="Idade" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="ASC" class="control-label">ASC(células escamosas atípicas) :</label>
+                <input asp-for="ASC" type="number" step="0.01" min="0" placeholder="Ex: 0.0" class="form-control"/>
+                <span asp-validation-for="ASC" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="DM" class="control-label">Diabetes(DM)</label>
+                <select asp-for="DM" class="form-select" />
+                <option value="1">Possui Diabetes</option>
+                <option value="2">Não Possui</option>
+                <span asp-validation-for="DM" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HAS" class="control-label">Hipertensão(HAS) :</label>
+                <select asp-for="HAS" class="form-select" />
+                <option value="1">Possui Hipertensão</option>
+                <option value="2">Não possui</option>
+                <span asp-validation-for="HAS" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cir_Cardiaca_Previa" class="control-label">Cirurgia Cardíaca Prévia :</label>
+                <select asp-for="Cir_Cardiaca_Previa" class="form-select" />
+                <option value="1">Já fez Cirurgia Cardíaca Prévia</option>
+                <option value="2">Não fez</option>
+                <span asp-validation-for="Cir_Cardiaca_Previa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cir_Combinada" class="control-label">Cirurgia Combinada :</label>
+                <select asp-for="Cir_Combinada" class="form-select" />
+                <option value="1">Já fez Cirurgia Combinada</option>
+                <option value="2">Não fez</option>
+                <span asp-validation-for="Cir_Combinada" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cir_Urgencia" class="control-label">Cirurgia de Urgência :</label>
+                <select asp-for="Cir_Urgencia" class="form-select" />
+                <option value="1">Já fez Cirurgia de Urgência</option>
+                <option value="2">Não fez</option>
+                <span asp-validation-for="Cir_Urgencia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CEC" class="control-label">Carcinoma Espinocelular(CEC) :</label>
+                <select asp-for="CEC" class="form-select" />
+                <option value="1">Possui CEC</option>
+                <option value="2">Não possui</option>
+                <span asp-validation-for="CEC" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hb_pre" class="control-label">Hemoglobina(Hb-pré) :</label>
+                <input asp-for="Hb_pre" type="number" step="0.01" min="0" placeholder="Ex: 0.00" class="form-control"/>
+                <span asp-validation-for="Hb_pre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Crea_pre" class="control-label">Creatinina(Crea-pré) :</label>
+                <input asp-for="Crea_pre" type="number" step="0.01" min="0" placeholder="Ex: 0.00" class="form-control"/>
+                <span asp-validation-for="Crea_pre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Congenito" class="control-label">Doença congênita :</label>
+                <select asp-for="Congenito" class="form-select" />
+                <option value="0">Possui alguma doença congênita</option>
+                <option value="1">Não possui</option>
+                <span asp-validation-for="Congenito" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Revascularizacao" class="control-label">Revascularização :</label>
+                <select asp-for="Revascularizacao" class="form-select" />
+                <option value="0">Já fez Revascularização</option>
+                <option value="1">Não fez</option>
+                <span asp-validation-for="Revascularizacao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Transplante" class="control-label">Transplante :</label>
+                <select asp-for="Transplante" class="form-select" />
+                <option value="0">Já fez Transplante</option>
+                <option value="1">Não fez</option>
+                <span asp-validation-for="Transplante" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Valvular" class="control-label">Doença Valvular :</label>
+                <select asp-for="Valvular" class="form-select" />
+                <option value="0">Possui a Doença Valvular</option>
+                <option value="1">Não possui</option>
+                <span asp-validation-for="Valvular" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Prever" class="btn btn-primary" />
+                <input type="reset" class="btn btn-warning" />
+                <a class="btn btn-info"asp-controller="Home" asp-action="Index">Voltar a Página Inicial</a>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"></partial>
+}

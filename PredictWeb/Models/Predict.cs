@@ -34,12 +34,53 @@ namespace PredictWeb.Models
                 switch (Convert.ToInt16(Result))
                 {
                     case 0: return "Setosa";
+                        break;
                     case 1: return "Versicolor";
+                        break;
                     case 2: return "Virginica";
+                        break;
+                    default : return null;
                 }
-                return null;
             }
         }
 
+    }
+    public class CovidViewModel
+    {
+        public Int16 Genero { set; get; }
+        public Int16 Idade { set; get; }
+        public Double ASC { set; get; }
+        public Int16 DM { set; get; }
+        public Int16 HAS { set; get; }
+        public Int16 Cir_Cardiaca_Previa { set; get; }
+        public Int16 Cir_Combinada { set; get; }
+        public Int16 Cir_Urgencia { set; get; }
+        public Int16 CEC { set; get; }
+        public Double Hb_pre { set; get; }
+        public Double Crea_pre { set; get; }
+        public Int16 Congenito { set; get; }
+        public Int16 Revascularizacao { set; get; }
+        public Int16 Transplante { set; get; }
+        public Int16 Valvular { set; get; }
+        public Boolean? Result { get; set; }
+
+        public String? ResultDesc {
+            get
+            {
+                switch (Result)
+                {
+                    
+                    case true: 
+                        return "Alto Risco";
+                        break;
+                    case false: 
+                        return "Baixo Risco";
+                        break;
+                    default:
+                        return null;
+                }
+            }
+        }
+        
     }
 }
