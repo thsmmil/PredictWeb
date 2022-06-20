@@ -1,0 +1,20 @@
+POST http://127.0.0.1:8000/api/covid
+Content-Type: application/json
+
+{
+    "Genero" : 2,
+    "Idade" : 74,
+    "ASC" : 1.227722,
+    "DM" : 2,
+    "HAS" : 1,
+    "Cir_Cardiaca_Previa" : 2,
+    "Cir_Combinada" : 2,
+    "Cir_Urgencia" : 2,
+    "CEC" : 1,
+    "Hb_pre" : 12.500000,
+    "Crea_pre" : 0.690000,
+    "Congenito" : 0,
+    "Revascularizacao" : 1,
+    "Transplante" : 0,
+    "Valvular" : 0.690000
+}

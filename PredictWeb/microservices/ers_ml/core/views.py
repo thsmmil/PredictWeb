@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.renderers import JSONRenderer
 
 from .serializers import CovidSerializer
 from .models import CovidPred
@@ -36,6 +37,9 @@ class CovidAPIView(APIView):
         serializer = CovidSerializer(data = request.data)
         serializer.is_valid(raise_exception=True)
         print('Entrou na view')
+        print(type(request.data))
+        print(type(request))
+        print(request)
         #Read file
         df = pd.read_excel('./core/ERS.xlsx',
                   usecols=['Gênero', 'Idade', 'Peso', 'Altura', 'IMC', 'ASC', 'DM', 'HAS', 'Classif Cirurgia', 
@@ -105,27 +109,30 @@ class CovidAPIView(APIView):
         print(type(serializer.data) )
         print(serializer)
         teste_re = [
-            serializer.data['Genero'],
-            serializer.data['Idade'],
-            serializer.data['ASC'],
-            serializer.data['DM'],
-            serializer.data['HAS'],
-            serializer.data['Cir_Cardiaca_Previa'],
-            serializer.data['Cir_Combinada'],
-            serializer.data['Cir_Urgencia'],
-            serializer.data['CEC'],
-            serializer.data['Hb_pre'],
-            serializer.data['Crea_pre'],
-            serializer.data['Congenito'],
-            serializer.data['Revascularizacao'],
-            serializer.data['Transplante'],
-            serializer.data['Valvular'],
+            request.data['Genero'],
+            request.data['Idade'],
+            request.data['ASC'],
+            request.data['DM'],
+            request.data['HAS'],
+            request.data['Cir_Cardiaca_Previa'],
+            request.data['Cir_Combinada'],
+            request.data['Cir_Urgencia'],
+            request.data['CEC'],
+            request.data['Hb_pre'],
+            request.data['Crea_pre'],
+            request.data['Congenito'],
+            request.data['Revascularizacao'],
+            request.data['Transplante'],
+            request.data['Valvular'],
         ]
         print(teste_re)
-        result = clf.predict(teste_re)
+        result = clf.predict([teste_re])
         serializer.data['Result'] = result
-        
-        return Response(serializer.data)
+        print(serializer)
+        print(type(result))
+        result = result.item()
+        request.data['Result'] = result
+        return Response(request.data)
 
 
 
