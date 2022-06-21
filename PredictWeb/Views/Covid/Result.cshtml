@@ -1,9 +1,15 @@
 ﻿@model PredictWeb.Models.CovidViewModel
 @{
     ViewData["Title"] = "Resultado";
-}
+    var textClass = Convert.ToBoolean(Model.Result) ? "text-danger" : "text-primary";
 
-<h1>Predição</h1>
-<div class="">
-    <p>De acordo com as informações fornecidas ao sistema o resultado das chances de internamento/óbito são de : @Model.ResultDesc</p>
-</div>
+}
+<section class="">
+    <h1>Predição</h1>
+    <div class="">
+        <p>
+            De acordo com as informações fornecidas ao sistema o resultado das chances de internamento/óbito são de :
+            <span class=@textClass>@Model.ResultDesc</span>
+        </p>
+    </div>
+</section>

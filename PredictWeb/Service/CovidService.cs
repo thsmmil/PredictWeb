@@ -10,12 +10,13 @@ namespace PredictWeb.Service
     public class CovidService
     {
         private readonly HttpClient httpClient = new HttpClient();
+        private readonly Uri uri = new Uri("http://localhost:8000/api/covid");
 
         public async Task<CovidViewModel> GetPredictAsync(CovidViewModel model)
         {
             try
             {
-                var url = $"localhost:8001/api/covid";
+                
                 var dataRequest = new
                 {
                     Genero = model.Genero,
@@ -37,7 +38,7 @@ namespace PredictWeb.Service
                 
                 var dataJson = new StringContent(JsonConvert.SerializeObject(dataRequest), Encoding.UTF8, "application/json");
                 
-                var response = await httpClient.PostAsync(url, dataJson);
+                var response = await httpClient.PostAsync(uri, dataJson);
 
                 string content = string.Empty;
                 if (response.IsSuccessStatusCode)
@@ -45,7 +46,8 @@ namespace PredictWeb.Service
                     content = response.Content.ReadAsStringAsync().Result;
                     if (!string.IsNullOrWhiteSpace(content))
                     {
-                        Console.WriteLine(content);
+                        var result = JsonConvert.DeserializeObject<CovidViewModel>(content);
+                        if (result != null) model.Result = result.Result;
                     }
                 }
 
