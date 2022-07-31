@@ -3,48 +3,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PredictWeb.Models
 {
-    public class IrisViewModel
-    {
-
-        [Required(ErrorMessage = "O campo 'Nome' é obrigatório")]
-        [UIHint("TamanhoSepala")]
-        [Display(Name = "TamanhoSepala")]
-        public double SepalLength { get; set; }
-
-        [Required(ErrorMessage = "O campo 'E-mail' é obrigatório")]
-        [UIHint("LarguraSepala")]
-        [Display(Name = "LarguraSepala")]
-        public double SepalWidth { get; set; }
-
-        [Required(ErrorMessage = "O campo 'Senha' é obrigatório")]
-        [UIHint("TamanhoPetala")]
-        [Display(Name = "TamanhoPetala")]
-        public double PetalLength { get; set; }
-
-        [Required(ErrorMessage = "O campo 'Senha' é obrigatório")]
-        [UIHint("LarguraPetala")]
-        [Display(Name = "LarguraPetala")]
-        public int PetalWidth { get; set; }
-
-        public int? Result { get; set; }
-        public string? ResultDesc
-        {
-            get
-            {
-                switch (Convert.ToInt16(Result))
-                {
-                    case 0: return "Setosa";
-                        break;
-                    case 1: return "Versicolor";
-                        break;
-                    case 2: return "Virginica";
-                        break;
-                    default : return null;
-                }
-            }
-        }
-
-    }
     public class CovidViewModel
     {
         public int Genero { set; get; }
@@ -68,6 +26,7 @@ namespace PredictWeb.Models
         public string Valvular_text { set; get; }
         public bool? Result { get; set; }
 
+        #nullable enable
         public string? ResultDesc {
             get
             {
